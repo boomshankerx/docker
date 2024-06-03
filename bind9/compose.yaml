@@ -1,0 +1,14 @@
+services:
+  bind9:
+    image: 
+    container_name: ubuntu/bind9
+    environment:
+      - TZ=Etc/UTC
+      - BIND9_USER=root
+    volumes:
+      - /home/lorne/bind9/etc:/etc/bind/
+      - /home/lorne/bind9/data:/var/cache/bind
+      - /home/lorne/bind9/records:/var/lib/bind
+    ports:
+      - "53:53"
+    restart: unless-stopped
