@@ -3,8 +3,8 @@ services:
     image: docker.io/mongo:7.0
     container_name: unifi-db
     volumes:
-      - /home/lorne/docker-unifi/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
-      - /home/lorne/unifi/db:/data/db
+      - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+      - ./db:/data/db
     restart: unless-stopped
   unifi-network-application:
     image: lscr.io/linuxserver/unifi-network-application:latest
@@ -22,7 +22,7 @@ services:
       - MONGO_PORT=27017
       - MONGO_DBNAME=unifi
     volumes:
-      - /home/lorne/unifi/data:/config
+      - ./config:/config
     ports:
       - 8443:8443
       - 3478:3478/udp
