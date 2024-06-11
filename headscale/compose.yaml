@@ -1,0 +1,23 @@
+#version: '3.9'
+services:
+  headscale:
+    image: headscale/headscale:0.23.0-alpha12
+    container_name: headscale
+    environment:
+      - TZ=America/Edmonton
+    volumes:
+      - ./config:/etc/headscale
+      - ./data:/var/lib/headscale
+    ports:
+      - 58080:8080
+    entrypoint: headscale serve
+    restart: unless-stopped
+  headscale-admin:
+    image: goodieshq/headscale-admin:latest
+    container_name: headscale-admin
+    ports:
+      - 50080:80
+    restart: unless-stopped
+
+volumes:
+  data:
