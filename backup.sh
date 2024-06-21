@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-BASE=/home/lorne/docker
+BASE=/docker
 DEST=/backup
 DATE=$(date +%F-%H%M%S)
 
@@ -14,6 +14,7 @@ fi
 cd $BASE
 zip -rv $DEST/bind9-$DATE.zip bind9/config bind9/records bind9/cache
 zip -rv $DEST/headscale-$DATE.zip headscale/config headscale/data
-zip -rv $DEST/unifi-$DATE.zip unifi/config unifi/data
+zip -rv $DEST/unifi-$DATE.zip unifi/config unifi/db
+zip -rv $DEST/portainer-$DATE.zip portainer/data
 
 find /backup -mtime +30 -print -exec rm {} \;
