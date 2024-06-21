@@ -3,13 +3,13 @@ services:
     image: ubuntu/bind9
     container_name: bind9 
     environment:
-      - TZ=Etc/UTC
+      - TZ=America/Edmonton
       - BIND9_USER=root
     ports:
       - "53:53"
       - "53:53/udp"
     volumes:
-      - ./config:/etc/bind/
-      - ./cache:/var/cache/bind
-      - ./records:/var/lib/bind
+      - /docker/bind9/config:/etc/bind/
+      - /docker/bind9/cache:/var/cache/bind
+      - /docker/bind9/records:/var/lib/bind
     restart: unless-stopped

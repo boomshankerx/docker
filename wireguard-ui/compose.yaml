@@ -1,5 +1,4 @@
 version: "3"
-
 services:
   wireguard-ui:
     image: ngoduykhanh/wireguard-ui:latest

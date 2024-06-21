@@ -6,8 +6,8 @@ services:
     environment:
       - TZ=America/Edmonton
     volumes:
-      - ./config:/etc/headscale
-      - ./data:/var/lib/headscale
+      - /docker/headscale/config:/etc/headscale
+      - /docker/headscale/data:/var/lib/headscale
     ports:
       - 58080:8080
     entrypoint: headscale serve
