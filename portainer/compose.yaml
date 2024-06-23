@@ -1,0 +1,13 @@
+services:
+  portainer:
+    image: portainer/portainer-ce:latest 
+    container_name: portainer
+    environment:
+      - TZ=America/Edmonton
+    ports:
+      - 8000:8000
+      - 9443:9443
+    volumes:
+      - /docker/portainer/data:/data
+      - /var/run/docker.sock:/var/run/docker.sock 
+    restart: always
