@@ -1,0 +1,6 @@
+bind9
+dockge
+netbootxyz
+paperless-ngx
+portainer
+unifi
