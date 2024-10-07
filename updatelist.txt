@@ -1,5 +1,6 @@
 bind9
 dockge
+duplicati
 netbootxyz
 paperless-ngx
 portainer
