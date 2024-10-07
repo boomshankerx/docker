@@ -1,0 +1,32 @@
+---
+services:
+  duplicati:
+    image: lscr.io/linuxserver/duplicati:latest
+    container_name: duplicati
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Edmonton
+      - CLI_ARGS= #optional
+    volumes:
+      - /docker/duplicati/config:/config
+      - backups:/backups
+      - source:/source
+    ports:
+      - 8200:8200
+    restart: unless-stopped
+
+volumes:
+  backups:
+    driver: local
+    driver_opts:
+      type: cifs
+      device: "//192.168.11.253/backup.img/backup.duplicati"
+      o: "username=${CIFS_USERNAME},password=${CIFS_PASSWORD},uid=1000,gid=1000"
+  source:
+    driver: local
+    driver_opts:
+      type: cifs
+      device: "//192.168.11.253/data"
+      o: "username=${CIFS_USERNAME},password=${CIFS_PASSWORD},uid=1000,gid=1000"
+
