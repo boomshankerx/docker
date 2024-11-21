@@ -1,0 +1,32 @@
+---
+volumes:
+  elasticsearch-data:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/docker/zammad/elasticsearch-data'
+  postgresql-data:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/docker/zammad/postgresql-data'
+  redis-data:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/docker/zammad/redis-data'
+  zammad-backup:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/docker/zammad/zammad-backup'
+  zammad-storage:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/docker/zammad/zammad-storage'

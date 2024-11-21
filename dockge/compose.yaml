@@ -2,8 +2,16 @@ services:
   dockge:
     image: louislam/dockge:1
     restart: unless-stopped
+    networks:
+      - proxy
     ports:
       - 5001:5001
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.dockge.rule=Host(`dockge.techg.ca`)
+      - traefik.http.routers.dockge.entrypoints=websecure
+      - traefik.http.routers.dockge.tls=true
+      # - traefik.http.services.dockge.loadbalancer.server.port=5001
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /docker/dockge/data:/app/data
@@ -15,3 +23,7 @@ services:
     environment:
       # Tell Dockge where to find the stacks
       - DOCKGE_STACKS_DIR=/home/lorne/docker
+
+networks:
+  proxy:
+    external: true

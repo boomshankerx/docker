@@ -12,8 +12,16 @@ services:
       - /docker/duplicati/config:/config
       - backups:/backups
       - source:/source
+    networks:
+      - proxy
     ports:
       - 8200:8200
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.duplicati.rule=Host(`duplicati.techg.ca`)
+      - traefik.http.routers.duplicati.entrypoints=websecure
+      - traefik.http.routers.duplicati.tls=true
+      # - traefik.http.services.dockge.loadbalancer.server.port=5001
     restart: unless-stopped
 
 volumes:
@@ -30,3 +38,6 @@ volumes:
       device: "//192.168.11.253/data"
       o: "username=${CIFS_USERNAME},password=${CIFS_PASSWORD},uid=1000,gid=1000"
 
+networks:
+  proxy:
+    external: true
