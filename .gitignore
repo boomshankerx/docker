@@ -1,6 +1,6 @@
+.env
 cache/
-config/
+certs/
 data/
 db/
 records/
-.env
